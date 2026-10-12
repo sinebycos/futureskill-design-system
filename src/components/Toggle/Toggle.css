@@ -1,0 +1,68 @@
+.fs-toggle {
+  --fs-toggle-w: 44px; --fs-toggle-h: 22px; --fs-toggle-nob: 18px; --fs-toggle-grow: 6px; --fs-toggle-grow-content: 5px; --fs-toggle-gap: 5px;
+  --fs-toggle-spinner: 14px; --fs-toggle-bg: #bfbfbf;
+  position: relative; display: inline-flex; flex: none; box-sizing: border-box; margin: 0; padding: 0; vertical-align: middle; cursor: pointer;
+}
+/* the real checkbox lies invisibly over the whole track, so clicks, Space and screen readers all reach it */
+.fs-toggle__input {
+  position: absolute; top: 0; left: 0; z-index: 1; display: block; box-sizing: border-box; width: 100%; height: 100%; margin: 0; padding: 0; border: 0;
+  opacity: 0; cursor: inherit; -webkit-appearance: none; appearance: none;
+}
+.fs-toggle__track {
+  --fs-toggle-nob-w: var(--fs-toggle-nob);
+  position: relative; display: flex; align-items: center; box-sizing: border-box; height: var(--fs-toggle-h); padding: 0 var(--space-2);
+  border-radius: var(--radius-16); background: var(--fs-toggle-bg); color: #ffffff;
+  transition: background-color 150ms ease-out, box-shadow 850ms cubic-bezier(0, 0, 0, 0.99);
+}
+.fs-toggle__nob {
+  position: absolute; top: var(--space-2); left: var(--space-2); display: flex; align-items: center; justify-content: center; box-sizing: border-box;
+  width: var(--fs-toggle-nob-w); height: var(--fs-toggle-nob); border-radius: var(--radius-16); background: #ffffff; box-shadow: 0 2px 4px #00230b33;
+  transition: left 150ms ease-out, width 150ms ease-out;
+}
+
+/* inner text or icon: only the side that matches the current value takes space, on the side the nob is not */
+.fs-toggle__inner {
+  display: none; align-items: center; flex: none; box-sizing: border-box; white-space: nowrap;
+  font-family: var(--font-thai); font-weight: 400; font-size: 12px; line-height: 20px; color: #ffffff;
+}
+.fs-toggle__inner--icon { --fs-toggle-gap: var(--space-4); }
+.fs-toggle__inner--on { margin: 0 calc(var(--fs-toggle-nob) + var(--fs-toggle-gap)) 0 var(--space-4); }
+.fs-toggle__inner--off { margin: 0 var(--space-4) 0 calc(var(--fs-toggle-nob) + var(--fs-toggle-gap)); }
+.fs-toggle__inner--empty { width: calc(var(--fs-toggle-w) - var(--space-2) - var(--space-2)); margin: 0; }
+.fs-toggle__inner .fs-icon { color: #ffffff; }
+/* icon slot: the icon is any node the caller passes (e.g. a bare Heroicons component), so size and ink it here (12px at both sizes) */
+.fs-toggle__inner > svg { flex: none; width: 12px; height: 12px; color: #ffffff; }
+.fs-toggle__input:not(:checked) + .fs-toggle__track .fs-toggle__inner--off,
+.fs-toggle__input:checked + .fs-toggle__track .fs-toggle__inner--on { display: flex; }
+
+/* size */
+.fs-toggle--small { --fs-toggle-w: 28px; --fs-toggle-h: 16px; --fs-toggle-nob: 12px; --fs-toggle-grow: 3px; --fs-toggle-grow-content: 3px; --fs-toggle-gap: var(--space-4); --fs-toggle-spinner: 9.33px; }
+
+/* checked: purple track, nob on the right */
+.fs-toggle__input:checked + .fs-toggle__track { --fs-toggle-bg: var(--primary-purple-500); }
+.fs-toggle__input:checked + .fs-toggle__track .fs-toggle__nob { left: calc(100% - var(--space-2) - var(--fs-toggle-nob-w)); }
+
+/* states: real pseudo-classes, plus data-state to pin a state in documentation */
+/* pressing: the nob stretches toward the middle (18 to 24, or to 23 beside text or an icon; 12 to 15 at small) */
+.fs-toggle--has-off .fs-toggle__input:not(:checked) + .fs-toggle__track,
+.fs-toggle--has-on .fs-toggle__input:checked + .fs-toggle__track { --fs-toggle-grow: var(--fs-toggle-grow-content); }
+.fs-toggle__input:not(:disabled):active + .fs-toggle__track,
+.fs-toggle[data-state="press"] .fs-toggle__track { --fs-toggle-nob-w: calc(var(--fs-toggle-nob) + var(--fs-toggle-grow)); }
+.fs-toggle__input:not(:disabled):active + .fs-toggle__track .fs-toggle__nob,
+.fs-toggle[data-state="press"] .fs-toggle__nob { transition-duration: 180ms; }
+/* focusing: a 4px ring of 10% black when off, a 3px halo of 20% purple when on */
+.fs-toggle__input:focus-visible + .fs-toggle__track,
+.fs-toggle[data-state="focus"] .fs-toggle__track { box-shadow: 0 0 0 4px #0000001a; transition-duration: 150ms, 0s; }
+.fs-toggle__input:checked:focus-visible + .fs-toggle__track,
+.fs-toggle[data-state="focus"] .fs-toggle__input:checked + .fs-toggle__track { box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-purple-500) 20%, transparent); }
+/* disabled and loading: the whole switch drops to 40% */
+.fs-toggle__input:disabled + .fs-toggle__track { opacity: 0.4; }
+.fs-toggle--disabled, .fs-toggle--loading, .fs-toggle[data-state="disabled"] { cursor: not-allowed; }
+
+/* loading: a quarter arc in the nob, cut through to the track colour */
+.fs-toggle__spinner { display: block; flex: none; width: var(--fs-toggle-spinner); height: var(--fs-toggle-spinner); color: var(--fs-toggle-bg); animation: fs-toggle-spin 1s linear infinite; }
+@keyframes fs-toggle-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .fs-toggle__spinner { animation: none; }
+  .fs-toggle__track, .fs-toggle__nob { transition: none; }
+}

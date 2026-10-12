@@ -1,0 +1,19 @@
+.fs-progress-bar { --fs-progress-bar-value: 0; position: relative; display: block; box-sizing: border-box; width: 100%; height: 51px; }
+/* track and fill: 10px bars that sit 6px below the top of the 20px thumb, as in Figma */
+.fs-progress-bar__track, .fs-progress-bar__fill { position: absolute; left: 0; top: 37px; height: 10px; border-radius: var(--radius-full); }
+.fs-progress-bar__track { right: 0; background: var(--fill-weaker); box-shadow: inset 0 0 0 1px var(--stroke-weak); }
+.fs-progress-bar__fill { width: calc((100% - 20px) * var(--fs-progress-bar-value) / 100 + 15px); background: var(--fill-brand-strong); }
+/* thumb: travels from the left edge (0) to the right edge (max) */
+.fs-progress-bar__thumb { position: absolute; top: 31px; left: calc((100% - 20px) * var(--fs-progress-bar-value) / 100); width: 20px; height: 20px; border-radius: var(--radius-full); background: var(--fill-brand-strong); }
+.fs-progress-bar__thumb::after { content: ""; position: absolute; left: var(--space-4); top: var(--space-4); width: 12px; height: 12px; border-radius: var(--radius-full); background: var(--fill-inverse-strong); }
+/* value bubble: left-aligned with the thumb at 0, right-aligned at max; its arrow stays over the thumb's centre */
+.fs-progress-bar__label {
+  position: absolute; top: 0; left: calc(var(--fs-progress-bar-value) * 1%); transform: translateX(calc(var(--fs-progress-bar-value) * -1%));
+  padding: var(--space-4); border-radius: var(--radius-4); background: var(--fill-brand-strong); color: var(--text-inverse-strong);
+  font-family: var(--font-thai); font-weight: 600; font-size: 12px; line-height: 15px; white-space: nowrap;
+}
+.fs-progress-bar__arrow { position: absolute; top: 19px; left: calc((100% - 20px) * var(--fs-progress-bar-value) / 100 + 5px); width: 10px; height: 10px; background: var(--fill-brand-strong); clip-path: polygon(0 0, 100% 0, 50% 100%); }
+
+/* end states */
+.fs-progress-bar--start .fs-progress-bar__fill { display: none; }
+.fs-progress-bar--finish .fs-progress-bar__track { background: var(--fill-inverse-strong); box-shadow: none; }

@@ -1,0 +1,15 @@
+.fs-outside-learning-card {
+  display: flex; align-items: flex-start; gap: var(--space-8); box-sizing: border-box; margin: 0; border: 0;
+  width: 622px; max-width: 100%; padding: var(--space-16); border-radius: var(--radius-8);
+  background: transparent; box-shadow: inset 0 0 0 1px var(--stroke-weak);
+  font-family: var(--font-thai); text-align: left; cursor: pointer; -webkit-appearance: none; appearance: none;
+}
+.fs-outside-learning-card__body { display: flex; flex-direction: column; justify-content: center; gap: var(--space-4); flex: 1 1 auto; min-width: 0; }
+/* the title uses the legacy paint style "Character/Title .85", which has no token */
+.fs-outside-learning-card__title { font-weight: 400; font-size: 14px; line-height: 22px; color: var(--text-strong); }
+.fs-outside-learning-card__description { font-weight: 400; font-size: 12px; line-height: 18px; color: var(--text-weak); }
+.fs-outside-learning-card__check { display: flex; flex: none; color: var(--icon-brand); }
+
+/* Figma "True". data-state pins it in documentation */
+.fs-outside-learning-card--selected, .fs-outside-learning-card[data-state="selected"] { background: var(--fill-brand-weak); box-shadow: inset 0 0 0 1px var(--stroke-selected), var(--shadow-overlay); }
+.fs-outside-learning-card:focus-visible { outline: 2px solid var(--stroke-focus); outline-offset: 2px; }

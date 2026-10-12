@@ -1,0 +1,29 @@
+.fs-badge {
+  --fs-badge-bg: var(--fill-weak); --fs-badge-bd: var(--stroke-weak); --fs-badge-fg: var(--text-weak); --fs-badge-ink: var(--icon-neutral);
+  display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; vertical-align: middle;
+  height: 32px; padding: 0 var(--space-8); border-radius: var(--radius-16);
+  font-family: var(--font-thai); font-weight: 400; font-size: 16px; line-height: 24px; white-space: nowrap;
+  color: var(--fs-badge-fg); background: var(--fs-badge-bg); box-shadow: inset 0 0 0 1px var(--fs-badge-bd);
+}
+.fs-badge .fs-icon { color: var(--fs-badge-ink); }
+.fs-badge__label { padding: 0 var(--space-4); }
+/* icon slot: the icon is any node the caller passes (e.g. a bare Heroicons component), so size and ink it here; 16px at small (see sizes) */
+.fs-badge > svg { flex: none; width: 20px; height: 20px; color: var(--fs-badge-ink); }
+
+/* optional status dot: Figma nests the library "Badge dot" (Medium, 12px) in both sizes; its colours are not local tokens */
+.fs-badge__dot-box { display: inline-flex; flex: none; padding: 0 var(--space-4); }
+.fs-badge__dot { --fs-badge-dot: #067a57; width: 12px; height: 12px; border-radius: var(--radius-full); background: linear-gradient(var(--fs-badge-dot), var(--fs-badge-dot)), #ffffff; }
+.fs-badge__dot--busy, .fs-badge__dot--notification { --fs-badge-dot: #c73a3a; }
+.fs-badge__dot--away { --fs-badge-dot: #fec62e; }
+.fs-badge__dot--offline { --fs-badge-dot: #0011661a; }
+
+/* sizes */
+.fs-badge--small { height: 24px; font-size: 14px; line-height: 22px; }
+.fs-badge--small > svg { width: 16px; height: 16px; }
+
+/* tones */
+.fs-badge--error { --fs-badge-bg: var(--fill-error-weak); --fs-badge-bd: var(--stroke-error-weak); --fs-badge-fg: var(--text-error); --fs-badge-ink: var(--icon-error); }
+.fs-badge--warning { --fs-badge-bg: var(--fill-warning-weak); --fs-badge-bd: var(--stroke-warning-weak); --fs-badge-fg: var(--text-warning); --fs-badge-ink: var(--icon-warning); }
+.fs-badge--success { --fs-badge-bg: var(--fill-success-weak); --fs-badge-bd: var(--stroke-success-weak); --fs-badge-fg: var(--text-success); --fs-badge-ink: var(--icon-success); }
+.fs-badge--information { --fs-badge-bg: var(--info-50); --fs-badge-bd: var(--info-500); --fs-badge-fg: var(--info-600); --fs-badge-ink: var(--info-600); }
+.fs-badge--brand { --fs-badge-bg: var(--fill-brand-weak); --fs-badge-bd: var(--stroke-brand-weak); --fs-badge-fg: var(--text-brand); --fs-badge-ink: var(--icon-brand); }

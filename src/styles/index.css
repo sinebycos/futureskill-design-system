@@ -1,0 +1,4 @@
+/* Package styles without fonts. The build prepends the @font-face rules (fonts.css) to dist/styles.css,
+   so the woff2 files ship as files instead of being inlined. */
+@import './tokens.css';
+@import './base.css';

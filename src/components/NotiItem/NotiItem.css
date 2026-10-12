@@ -1,0 +1,39 @@
+.fs-noti-item {
+  --fs-noti-item-bg: var(--primary-neutral-50);
+  display: flex; align-items: flex-start; gap: var(--space-16); box-sizing: border-box; width: 315px; max-width: 100%; margin: 0; padding: var(--space-8);
+  background: var(--fs-noti-item-bg); font-family: var(--font-thai); font-weight: 400; text-align: left; text-decoration: none; color: var(--primary-neutral-800);
+}
+.fs-noti-item--interactive { cursor: pointer; }
+.fs-noti-item:focus-visible { outline: 2px solid var(--stroke-focus); outline-offset: -2px; }
+
+/* tone: the root fill only */
+.fs-noti-item--green { --fs-noti-item-bg: var(--green-50); }
+.fs-noti-item--yellow { --fs-noti-item-bg: var(--yellow-50); }
+.fs-noti-item--red { --fs-noti-item-bg: var(--red-50); }
+
+/* 66px thumbnail: "cover" fills the square, "mark" centres a 32px logo on a neutral tile */
+.fs-noti-item__thumb { flex: none; display: flex; align-items: center; justify-content: center; box-sizing: border-box; width: 66px; height: 66px; border-radius: var(--radius-8); overflow: hidden; }
+.fs-noti-item__thumb--mark { padding: var(--space-10); background: var(--primary-neutral-100); }
+.fs-noti-item__img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.fs-noti-item__thumb--mark .fs-noti-item__img { width: 32px; height: auto; max-height: 100%; object-fit: contain; }
+
+.fs-noti-item__main { flex: 1 1 0; min-width: 0; display: flex; align-items: flex-start; }
+.fs-noti-item__body { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+.fs-noti-item__title { align-self: stretch; font-weight: 600; font-size: 14px; line-height: 19px; color: var(--primary-neutral-800); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+/* one line: cut at the character, as Figma does, instead of at a word break */
+.fs-noti-item__title--single { display: block; white-space: nowrap; text-overflow: ellipsis; }
+.fs-noti-item__message, .fs-noti-item__quote, .fs-noti-item__meta { align-self: stretch; font-size: 12px; line-height: 18px; }
+.fs-noti-item__message { color: var(--primary-neutral-700); }
+.fs-noti-item__message--clamp, .fs-noti-item__quote { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+.fs-noti-item__quote { color: var(--primary-neutral-600); -webkit-line-clamp: 2; }
+.fs-noti-item__meta { margin-top: var(--space-8); color: var(--primary-neutral-900-legacy); }
+.fs-noti-item__time { font-size: 14px; line-height: 22px; color: var(--primary-purple-500); }
+.fs-noti-item__action { display: flex; }
+
+/* coloured status phrase inside the message */
+.fs-noti-item__highlight--yellow { color: var(--yellow-700); }
+.fs-noti-item__highlight--red { color: var(--red-700); }
+.fs-noti-item__highlight--green { color: var(--green-700); }
+
+/* 12px dot with a 2px centred ring: 1px of the ring sits inside the circle and 1px outside */
+.fs-noti-item__dot { flex: none; width: 12px; height: 12px; border-radius: var(--radius-full); background: var(--red-500); box-shadow: inset 0 0 0 1px var(--red-100), 0 0 0 1px var(--red-100); }

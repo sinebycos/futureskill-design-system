@@ -1,0 +1,33 @@
+.fs-skill-level {
+  --fs-skill-level-on: var(--primary-neutral-400); --fs-skill-level-off: #d9d9d9;
+  --fs-skill-level-wash: none; --fs-skill-level-cap: transparent; --fs-skill-level-ink: var(--primary-neutral-800);
+  box-sizing: border-box;
+}
+
+/* bars: 16px signal-strength indicator, three 4px bars */
+.fs-skill-level--bars { display: inline-flex; align-items: flex-end; gap: var(--space-2); flex: none; width: 16px; height: 16px; vertical-align: middle; }
+.fs-skill-level__bar { flex: none; width: 4px; height: 16px; background: var(--fs-skill-level-off); }
+.fs-skill-level__bar--1 { height: 5.3px; }
+.fs-skill-level__bar--2 { height: 10.6px; }
+.fs-skill-level__bar--on { background: var(--fs-skill-level-on); }
+.fs-skill-level--bars.fs-skill-level--novice { --fs-skill-level-on: var(--yellow-500); }
+.fs-skill-level--bars.fs-skill-level--emerging { --fs-skill-level-on: var(--green-500); }
+.fs-skill-level--bars.fs-skill-level--intermediate { --fs-skill-level-on: #425e4b; }
+.fs-skill-level--bars.fs-skill-level--above-avg { --fs-skill-level-on: #694989; }
+.fs-skill-level--bars.fs-skill-level--excellent { --fs-skill-level-on: var(--primary-purple-500); }
+
+/* band: one column of the level chart. 8px cap, label at the top, range at the bottom, a wash that fades downwards */
+.fs-skill-level--band {
+  display: flex; flex-direction: column; justify-content: space-between; align-items: center; flex: none;
+  width: 132px; height: 352.49px; padding: 0 0 var(--space-8); background: var(--fs-skill-level-wash);
+  font-family: var(--font-thai); font-weight: 400; font-size: 10px; line-height: 18px; text-align: center; color: var(--fs-skill-level-ink);
+}
+.fs-skill-level__head { display: flex; flex-direction: column; align-items: center; gap: var(--space-8); width: 100%; }
+.fs-skill-level__cap { display: block; width: 100%; height: 8px; background: var(--fs-skill-level-cap); }
+.fs-skill-level__label, .fs-skill-level__range { display: block; width: 110px; max-width: 100%; min-height: 18.25px; }
+.fs-skill-level--band.fs-skill-level--novice { --fs-skill-level-wash: linear-gradient(180deg, #fdf6df33 0%, #fdf6df05 100%); --fs-skill-level-cap: var(--fill-warning-strong); --fs-skill-level-ink: var(--text-warning); }
+.fs-skill-level--band.fs-skill-level--emerging { --fs-skill-level-wash: linear-gradient(180deg, #9ae3b333 0%, #9ae3b305 100%); --fs-skill-level-cap: var(--fill-success-strong); --fs-skill-level-ink: var(--text-success); }
+.fs-skill-level--band.fs-skill-level--intermediate { --fs-skill-level-wash: linear-gradient(180deg, #99b4a133 0%, #99b4a105 100%); --fs-skill-level-cap: #425e4b; --fs-skill-level-ink: #425e4b; }
+.fs-skill-level--band.fs-skill-level--above-avg { --fs-skill-level-wash: linear-gradient(180deg, #b393d233 0%, #b393d205 100%); --fs-skill-level-cap: #694989; --fs-skill-level-ink: #694989; }
+.fs-skill-level--band.fs-skill-level--excellent { --fs-skill-level-wash: linear-gradient(180deg, #e5ccff33 0%, #e5ccff05 100%); --fs-skill-level-cap: var(--fill-brand-strong); --fs-skill-level-ink: var(--text-brand); }
+.fs-skill-level--band.fs-skill-level--inactive { --fs-skill-level-wash: none; --fs-skill-level-cap: transparent; --fs-skill-level-ink: var(--primary-neutral-800); }

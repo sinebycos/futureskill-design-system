@@ -1,0 +1,75 @@
+{
+  "name": "@futureskill/design-system",
+  "version": "0.1.0",
+  "description": "FutureSkill design system: tokens, fonts and React components, synced from the Figma file Design System (V.2).",
+  "private": true,
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist",
+    "tokens",
+    "docs"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "icon": [
+        "./dist/types/icon/index.d.ts"
+      ],
+      "tokens": [
+        "./dist/types/tokens/index.d.ts"
+      ]
+    }
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./icon": {
+      "types": "./dist/types/icon/index.d.ts",
+      "import": "./dist/icon.js"
+    },
+    "./tokens": {
+      "types": "./dist/types/tokens/index.d.ts",
+      "import": "./dist/tokens.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./tokens.json": "./tokens/tokens.json",
+    "./logos/*": "./dist/logos/*",
+    "./fonts/*": "./dist/fonts/*"
+  },
+  "scripts": {
+    "tokens": "node scripts/build-tokens.mjs",
+    "dev": "vite --config playground/vite.config.ts",
+    "build": "npm run tokens && node scripts/build-index.mjs && vite build && tsc -p tsconfig.build.json && node scripts/copy-static.mjs",
+    "build:playground": "vite build --config playground/vite.config.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepare": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^5.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.7"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "SEE LICENSE IN LICENSE.md"
+}

@@ -1,0 +1,33 @@
+.fs-test-selection-card {
+  position: relative; display: flex; align-items: flex-start; gap: var(--space-12); box-sizing: border-box; margin: 0; border: 0;
+  width: 622px; max-width: 100%; padding: var(--space-24); border-radius: var(--radius-8);
+  background: transparent; box-shadow: inset 0 0 0 1px var(--stroke-weak);
+  font-family: var(--font-thai); text-align: left; cursor: pointer; -webkit-appearance: none; appearance: none;
+}
+.fs-test-selection-card__radio {
+  display: flex; align-items: center; justify-content: center; flex: none; box-sizing: border-box; width: 16px; height: 16px;
+  border-radius: var(--radius-full); background: var(--fill-inverse-weak); box-shadow: inset 0 0 0 1px var(--stroke-strong);
+}
+.fs-test-selection-card__dot { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--fill-selected); }
+.fs-test-selection-card__icon { display: flex; align-items: center; flex: none; padding: var(--space-8); border-radius: var(--radius-4); background: var(--fill-weak); color: var(--icon-neutral); }
+/* icon slot: the icon is any node the caller passes (e.g. a bare Heroicons component), so size it here; ink comes from the tile colour */
+.fs-test-selection-card__icon > svg { flex: none; width: 20px; height: 20px; }
+.fs-test-selection-card__body { display: flex; flex-direction: column; justify-content: center; gap: var(--space-4); min-width: 0; }
+.fs-test-selection-card__title { font-weight: 400; font-size: 14px; line-height: 22px; color: var(--text-strong); }
+.fs-test-selection-card__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-8); font-weight: 400; font-size: 12px; line-height: 18px; color: var(--text-weak); }
+.fs-test-selection-card__open-end { color: var(--text-warning); }
+
+/* "Badge new": hangs 13px above and 8px past the top-right corner */
+.fs-test-selection-card__badge {
+  position: absolute; top: -13px; right: -8px; display: flex; align-items: center; justify-content: center; gap: var(--space-4); box-sizing: border-box;
+  padding: var(--space-2) var(--space-8); border-radius: var(--radius-full); background: var(--fill-warning-strong); box-shadow: inset 0 0 0 1px var(--stroke-inverse-strong);
+  font-weight: 400; font-size: 12px; line-height: 18px; color: var(--text-inverse-strong);
+}
+.fs-test-selection-card__badge .fs-icon { color: #ffffff; }
+
+/* Figma "True" and "Disabled". data-state pins them in documentation */
+.fs-test-selection-card--selected, .fs-test-selection-card[data-state="selected"] { background: var(--fill-brand-weak); box-shadow: inset 0 0 0 1px var(--stroke-selected); }
+.fs-test-selection-card--selected .fs-test-selection-card__radio, .fs-test-selection-card[data-state="selected"] .fs-test-selection-card__radio { background: transparent; box-shadow: inset 0 0 0 1px var(--fill-selected); }
+.fs-test-selection-card--selected .fs-test-selection-card__icon, .fs-test-selection-card[data-state="selected"] .fs-test-selection-card__icon { background: var(--fill-brand-weak); color: var(--icon-brand); }
+.fs-test-selection-card:disabled, .fs-test-selection-card[aria-disabled="true"], .fs-test-selection-card[data-state="disabled"] { opacity: 0.5; cursor: not-allowed; }
+.fs-test-selection-card:focus-visible { outline: 2px solid var(--stroke-focus); outline-offset: 2px; }

@@ -1,0 +1,11 @@
+/* Page defaults. Opt out by not importing styles.css and importing tokens.css + the component CSS you need. */
+body {
+  margin: 0;
+  font-family: var(--font-thai);
+  font-size: 16px;
+  line-height: 24px;
+  background: var(--background-base);
+  color: var(--text-strong);
+  -webkit-font-smoothing: antialiased;
+}
+.fs-icon { display: inline-block; flex: none; vertical-align: middle; }

@@ -1,0 +1,38 @@
+.fs-slider {
+  --fs-slider-lo: 0; --fs-slider-hi: 0;
+  position: relative; display: block; box-sizing: border-box; width: 256px; max-width: 100%; height: 24px; margin: 0; padding: 0;
+}
+.fs-slider--full-width { width: 100%; }
+/* track 8px tall, centred in the 24px row; the fill runs from the track start (or the left thumb's left edge) to the right edge of the thumb, as in Figma */
+.fs-slider__track { position: absolute; left: 0; right: 0; top: var(--space-8); height: 8px; border-radius: var(--radius-4); background: var(--primary-neutral-100); pointer-events: none; }
+.fs-slider__fill {
+  position: absolute; top: 0; bottom: 0; left: calc(var(--fs-slider-lo) * (100% - 24px)); width: calc((var(--fs-slider-hi) - var(--fs-slider-lo)) * (100% - 24px) + 24px);
+  border-radius: var(--radius-4); background: var(--primary-purple-500);
+}
+/* the native range input sits on top: its own track is transparent, its thumb is the 24px circle */
+.fs-slider__input {
+  -webkit-appearance: none; appearance: none; position: absolute; left: 0; top: 0; display: block; box-sizing: border-box; width: 100%; height: 24px;
+  margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; outline: none; cursor: pointer;
+}
+.fs-slider__input::-webkit-slider-runnable-track { -webkit-appearance: none; appearance: none; height: 24px; border: 0; background: transparent; }
+.fs-slider__input::-moz-range-track { height: 24px; border: 0; background: transparent; }
+.fs-slider__input::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; box-sizing: border-box; width: 24px; height: 24px; margin: 0; border: 0;
+  border-radius: var(--radius-full); background: var(--primary-purple-500); cursor: pointer;
+}
+.fs-slider__input::-moz-range-thumb {
+  box-sizing: border-box; width: 24px; height: 24px; margin: 0; border: 0;
+  border-radius: var(--radius-full); background: var(--primary-purple-500); cursor: pointer;
+}
+
+/* range: two inputs share the track; only the thumbs take the pointer, so each can be dragged */
+.fs-slider--range .fs-slider__input { pointer-events: none; }
+.fs-slider--range .fs-slider__input::-webkit-slider-thumb { pointer-events: auto; }
+.fs-slider--range .fs-slider__input::-moz-range-thumb { pointer-events: auto; }
+
+/* states: real pseudo-classes, plus data-state to pin a state in documentation. Figma draws no hover, pressed or disabled look. */
+.fs-slider__input:focus-visible::-webkit-slider-thumb, .fs-slider[data-state="focus"] .fs-slider__input::-webkit-slider-thumb { outline: 2px solid var(--stroke-focus); outline-offset: 2px; }
+.fs-slider__input:focus-visible::-moz-range-thumb, .fs-slider[data-state="focus"] .fs-slider__input::-moz-range-thumb { outline: 2px solid var(--stroke-focus); outline-offset: 2px; }
+.fs-slider__input:disabled, .fs-slider[data-state="disabled"] .fs-slider__input { cursor: not-allowed; }
+.fs-slider__input:disabled::-webkit-slider-thumb, .fs-slider[data-state="disabled"] .fs-slider__input::-webkit-slider-thumb { cursor: not-allowed; }
+.fs-slider__input:disabled::-moz-range-thumb, .fs-slider[data-state="disabled"] .fs-slider__input::-moz-range-thumb { cursor: not-allowed; }

@@ -1,0 +1,35 @@
+.fs-tabs {
+  display: flex; align-items: flex-start; box-sizing: border-box; width: 100%; margin: 0; padding: 0;
+  box-shadow: inset 0 -2px 0 var(--stroke-weak);
+}
+/* Figma: the Type=Icons container wraps, the Type=Text container does not */
+.fs-tabs--icons { flex-wrap: wrap; }
+
+.fs-tabs__item {
+  --fs-tabs-ink: var(--icon-neutral); --fs-tabs-line: 0 0 #0000;
+  /* Badge count comes from a remote library: its three colours are not local tokens, so they stay literal */
+  --fs-tabs-badge-bg: var(--fill-weak); --fs-tabs-badge-bd: var(--stroke-weak); --fs-tabs-badge-fg: var(--text-weak);
+  display: inline-flex; flex: none; align-items: center; gap: var(--space-8); box-sizing: border-box; height: 48px; margin: 0; border: 0; border-radius: 0;
+  padding: 0 var(--space-16); font-family: var(--font-thai); font-weight: 400; font-size: 16px; line-height: 24px; white-space: nowrap; text-decoration: none;
+  color: var(--text-weak); background: transparent; box-shadow: var(--fs-tabs-line); cursor: pointer; -webkit-appearance: none; appearance: none;
+}
+.fs-tabs__item .fs-icon { color: var(--fs-tabs-ink); }
+.fs-tabs__badge {
+  display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; height: 24px; padding: 0 var(--space-8); border-radius: var(--radius-16);
+  font-family: var(--font-thai); font-weight: 400; font-size: 14px; line-height: 20px;
+  color: var(--fs-tabs-badge-fg); background: var(--fs-tabs-badge-bg); box-shadow: inset 0 0 0 1px var(--fs-tabs-badge-bd);
+}
+
+/* selected */
+.fs-tabs__item--selected { --fs-tabs-ink: var(--icon-brand); --fs-tabs-line: inset 0 -2px 0 var(--stroke-selected); font-weight: 600; line-height: 22px; color: var(--text-brand); }
+
+/* states: real pseudo-classes, plus data-state to pin a state in documentation */
+.fs-tabs__item:hover, .fs-tabs__item[data-state="hover"] { background: var(--fill-hover); }
+.fs-tabs__item:active, .fs-tabs__item[data-state="press"] { background: var(--fill-click); }
+.fs-tabs__item:focus-visible, .fs-tabs__item[data-state="focus"] { outline: 2px solid var(--stroke-focus); outline-offset: 2px; }
+.fs-tabs__item:disabled, .fs-tabs__item[aria-disabled="true"], .fs-tabs__item[data-state="disabled"] { --fs-tabs-ink: var(--icon-disabled); color: var(--text-disabled); background: transparent; cursor: not-allowed; }
+/* Figma: a disabled selected tab keeps the brand icon ink and its underline grows to 4px in stroke-disabled */
+.fs-tabs__item--selected:disabled, .fs-tabs__item--selected[aria-disabled="true"], .fs-tabs__item--selected[data-state="disabled"] { --fs-tabs-ink: var(--icon-brand); --fs-tabs-line: inset 0 -4px 0 var(--stroke-disabled); }
+
+/* icon slot: the icon is now any node the caller passes (e.g. a bare Heroicons component), so size and ink it here */
+.fs-tabs__item > svg { flex: none; width: 20px; height: 20px; color: var(--fs-tabs-ink); }

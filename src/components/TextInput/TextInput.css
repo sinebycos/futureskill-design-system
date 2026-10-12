@@ -1,0 +1,61 @@
+.fs-text-input {
+  --fs-text-input-bg: var(--fill-inverse-strong); --fs-text-input-bd: var(--stroke-weak); --fs-text-input-bd-focus: var(--stroke-strong);
+  --fs-text-input-bw: 1px; --fs-text-input-overlay: transparent;
+  display: flex; flex-direction: column; gap: var(--space-4); box-sizing: border-box; width: 364px; max-width: 100%;
+  font-family: var(--font-thai); font-weight: 400; font-size: 16px; line-height: 24px; text-align: left; color: var(--text-strong);
+}
+.fs-text-input--full-width { width: 100%; }
+
+/* label row and hint, above the field */
+.fs-text-input__text { display: flex; flex-direction: column; }
+.fs-text-input__label { display: flex; align-items: baseline; align-self: flex-start; gap: var(--space-4); color: var(--text-strong); }
+.fs-text-input__required { color: var(--text-weak); }
+.fs-text-input__optional, .fs-text-input__hint { font-size: 14px; line-height: 22px; color: var(--text-weak); }
+
+/* error message: sits between the label and the field */
+.fs-text-input__error {
+  display: flex; align-items: center; gap: var(--space-8); padding: var(--space-4) 0; border-radius: var(--radius-4);
+  font-weight: 600; font-size: 14px; line-height: 19px; color: var(--text-error);
+}
+.fs-text-input__error .fs-icon { color: var(--icon-error); }
+
+/* the field: 48px, inside stroke, hover and press are a tint laid over the fill */
+.fs-text-input__field {
+  display: flex; align-items: center; gap: var(--space-8); box-sizing: border-box; height: 48px; border-radius: var(--radius-8);
+  color: var(--text-strong); background: linear-gradient(var(--fs-text-input-overlay), var(--fs-text-input-overlay)), var(--fs-text-input-bg);
+  box-shadow: inset 0 0 0 var(--fs-text-input-bw) var(--fs-text-input-bd); cursor: text;
+}
+.fs-text-input__input {
+  flex: 1 1 0; align-self: stretch; min-width: 0; box-sizing: border-box; margin: 0; padding: 0 var(--space-16); border: 0; outline: 0;
+  border-radius: var(--radius-8); background: transparent; color: inherit; font-family: inherit; font-weight: 400; font-size: 16px; line-height: 24px;
+  -webkit-appearance: none; appearance: none;
+}
+.fs-text-input__input::placeholder { font-size: 14px; line-height: 22px; color: var(--text-weak); opacity: 1; }
+.fs-text-input__icon { display: flex; flex: none; margin-right: var(--space-16); }
+/* icon slot: the icon is any node the caller passes (e.g. a bare Heroicons component), so size it here; it takes the field text colour */
+.fs-text-input__icon > svg { flex: none; width: 16px; height: 16px; }
+.fs-text-input--has-icon .fs-text-input__input { padding-right: 0; }
+
+/* Valid=False */
+.fs-text-input--invalid {
+  --fs-text-input-bg: var(--fill-error-weak); --fs-text-input-bd: var(--stroke-error-strong); --fs-text-input-bd-focus: var(--stroke-error-strong);
+  --fs-text-input-bw: 2px;
+}
+
+/* states: real pseudo-classes, plus data-state on the root to pin a state in documentation */
+.fs-text-input__field:hover, .fs-text-input[data-state="hover"] .fs-text-input__field { --fs-text-input-overlay: var(--fill-hover); }
+.fs-text-input__field:active, .fs-text-input[data-state="press"] .fs-text-input__field { --fs-text-input-overlay: var(--fill-click); }
+.fs-text-input__field:focus-within, .fs-text-input[data-state="focus"] .fs-text-input__field {
+  --fs-text-input-overlay: transparent; --fs-text-input-bd: var(--fs-text-input-bd-focus);
+  outline: 2px solid var(--stroke-focus); outline-offset: 2px;
+}
+.fs-text-input--disabled, .fs-text-input[data-state="disabled"] {
+  --fs-text-input-bg: var(--fill-inverse-strong); --fs-text-input-bd: var(--stroke-disabled); --fs-text-input-bd-focus: var(--stroke-disabled);
+  --fs-text-input-bw: 1px;
+}
+.fs-text-input--disabled .fs-text-input__label, .fs-text-input[data-state="disabled"] .fs-text-input__label,
+.fs-text-input--disabled .fs-text-input__required, .fs-text-input[data-state="disabled"] .fs-text-input__required { color: var(--text-disabled); }
+.fs-text-input--disabled .fs-text-input__field, .fs-text-input[data-state="disabled"] .fs-text-input__field {
+  --fs-text-input-overlay: transparent; color: var(--text-disabled); cursor: not-allowed;
+}
+.fs-text-input__input:disabled { -webkit-text-fill-color: currentColor; opacity: 1; cursor: not-allowed; }
