@@ -1,0 +1,41 @@
+.fs-checkbox {
+  display: inline-flex; align-items: flex-start; gap: var(--space-8); box-sizing: border-box; margin: 0; padding: 0; cursor: pointer;
+  font-family: var(--font-thai); font-weight: 400; font-size: 14px; line-height: 22px; color: var(--text-strong);
+}
+.fs-checkbox__box { position: relative; flex: none; display: block; width: 16px; height: 16px; }
+/* with a label the 16px box is centred on the first 22px line, as in Figma (60x22, centre aligned) */
+.fs-checkbox--labelled .fs-checkbox__box { margin: 3px 0; }
+.fs-checkbox__input {
+  -webkit-appearance: none; appearance: none; display: block; box-sizing: border-box; width: 16px; height: 16px; margin: 0; padding: 0; border: 0;
+  border-radius: var(--radius-2); background: var(--fill-inverse-strong); box-shadow: inset 0 0 0 1px var(--stroke-weak); cursor: inherit;
+}
+.fs-checkbox__mark { position: absolute; top: 0; left: 0; width: 16px; height: 16px; pointer-events: none; color: var(--fill-inverse-strong); visibility: hidden; }
+.fs-checkbox__label { display: block; }
+
+/* checked: fill-selected box, no border, check in fill-inverse-strong */
+.fs-checkbox__input:checked { background: var(--fill-selected); box-shadow: none; }
+.fs-checkbox__input:checked ~ .fs-checkbox__mark { visibility: visible; }
+/* indeterminate: resting box with an 8px fill-selected square in the middle */
+.fs-checkbox__input:indeterminate {
+  background: linear-gradient(var(--fill-selected), var(--fill-selected)) center / 8px 8px no-repeat, var(--fill-inverse-strong);
+  box-shadow: inset 0 0 0 1px var(--stroke-weak);
+}
+.fs-checkbox__input:indeterminate ~ .fs-checkbox__mark { visibility: hidden; }
+
+/* states: real pseudo-classes, plus data-state to pin a state in documentation */
+.fs-checkbox:hover .fs-checkbox__input:not(:checked):not(:indeterminate):not(:disabled),
+.fs-checkbox[data-state="hover"] .fs-checkbox__input:not(:checked):not(:indeterminate):not(:disabled) { box-shadow: inset 0 0 0 1px var(--stroke-selected); }
+.fs-checkbox__input:focus-visible { outline: 2px solid var(--stroke-focus); outline-offset: 2px; }
+.fs-checkbox--disabled, .fs-checkbox[data-state="disabled"] { color: var(--text-disabled); cursor: not-allowed; }
+.fs-checkbox__input:disabled {
+  background: linear-gradient(var(--fill-disabled), var(--fill-disabled)), var(--fill-inverse-strong);
+  box-shadow: inset 0 0 0 1px var(--stroke-disabled);
+}
+.fs-checkbox__input:disabled ~ .fs-checkbox__mark { color: var(--fill-disabled); }
+.fs-checkbox__input:disabled:indeterminate {
+  background: linear-gradient(var(--fill-disabled), var(--fill-disabled)) center / 8px 8px no-repeat, linear-gradient(var(--fill-disabled), var(--fill-disabled)), var(--fill-inverse-strong);
+}
+
+/* group */
+.fs-checkbox-group { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-8); box-sizing: border-box; margin: 0; padding: 0; border: 0; }
+.fs-checkbox-group--horizontal { flex-direction: row; flex-wrap: wrap; gap: var(--space-8) var(--space-16); }

@@ -1,0 +1,42 @@
+.fs-alert {
+  --fs-alert-bg: var(--background-base); --fs-alert-bd: var(--stroke-weak); --fs-alert-fg: var(--text-strong);
+  --fs-alert-ink: var(--icon-neutral); --fs-alert-close: var(--icon-neutral); --fs-alert-btn-bg: #ffffff03; --fs-alert-focus: var(--stroke-focus);
+  position: relative; display: flex; align-items: center; gap: var(--space-12); box-sizing: border-box; width: 100%; margin: 0;
+  padding: var(--space-12) var(--space-24); background: var(--fs-alert-bg); box-shadow: inset 0 -1px 0 var(--fs-alert-bd);
+  font-family: var(--font-thai); font-weight: 400; font-size: 14px; line-height: 22px; color: var(--fs-alert-fg);
+}
+.fs-alert__icon { display: inline-flex; flex: none; color: var(--fs-alert-ink); }
+/* icon slot: the icon is any node the caller passes (e.g. a bare Heroicons component), so size it here; ink comes from the slot colour */
+.fs-alert__icon > svg { flex: none; width: 24px; height: 24px; }
+.fs-alert__body { display: flex; flex: 1 1 0; min-width: 0; align-items: center; gap: var(--space-24); }
+.fs-alert__text { flex: 1 1 0; min-width: 0; }
+.fs-alert__action { display: inline-flex; flex: none; }
+/* the nested secondary button carries a 1% white fill override in Figma (not on the inverse tones) */
+.fs-alert .fs-alert__button { --fs-btn-bg: var(--fs-alert-btn-bg); }
+.fs-alert__close {
+  display: inline-flex; align-items: center; justify-content: center; flex: none; box-sizing: border-box; width: 24px; height: 24px;
+  margin: 0 0 0 var(--space-12); padding: 0; border: 0; background: transparent; color: var(--fs-alert-close); cursor: pointer; -webkit-appearance: none; appearance: none;
+}
+.fs-alert__close .fs-icon { flex: none; }
+.fs-alert__close:focus-visible { outline: 2px solid var(--fs-alert-focus); outline-offset: 2px; }
+
+/* tones */
+.fs-alert--error { --fs-alert-bg: var(--fill-error-weak); --fs-alert-bd: var(--stroke-error-weak); --fs-alert-ink: var(--icon-error); }
+.fs-alert--warning { --fs-alert-bg: var(--fill-warning-weak); --fs-alert-bd: var(--stroke-warning-weak); --fs-alert-ink: var(--icon-warning); }
+.fs-alert--success { --fs-alert-bg: var(--fill-success-weak); --fs-alert-bd: var(--stroke-success-weak); --fs-alert-ink: var(--icon-success); }
+/* Information is bound to variables of another library; the file holds no local token for them, so these are literals */
+.fs-alert--information { --fs-alert-bg: #26b0ff0d; --fs-alert-bd: #1a74a833; --fs-alert-ink: #1a74a8; }
+.fs-alert--brand { --fs-alert-bg: var(--fill-brand-weak); --fs-alert-bd: var(--stroke-brand-weak); --fs-alert-ink: var(--icon-brand); }
+.fs-alert--inverse-neutral, .fs-alert--inverse-brand {
+  --fs-alert-bd: transparent; --fs-alert-fg: var(--text-inverse-strong); --fs-alert-ink: var(--icon-inverse); --fs-alert-close: var(--icon-inverse);
+  --fs-alert-btn-bg: transparent; --fs-alert-focus: var(--stroke-inverse-strong);
+}
+.fs-alert--inverse-neutral { --fs-alert-bg: var(--background-inverse); }
+.fs-alert--inverse-brand { --fs-alert-bg: var(--fill-brand-strong); }
+.fs-alert--inverse-brand.fs-alert--mobile { --fs-alert-bg: var(--background-brand); }
+
+/* device: mobile stacks the action under the text and pins the close icon to the top right */
+.fs-alert--mobile { align-items: flex-start; padding: var(--space-16) var(--space-48) var(--space-16) var(--space-32); }
+.fs-alert--mobile .fs-alert__body { flex-direction: column; align-items: flex-start; justify-content: center; gap: var(--space-12); padding: var(--space-2) 0; }
+.fs-alert--mobile .fs-alert__text { flex: none; align-self: stretch; }
+.fs-alert--mobile .fs-alert__close { position: absolute; top: var(--space-16); right: var(--space-16); margin: 0; }

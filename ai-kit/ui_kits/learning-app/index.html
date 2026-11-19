@@ -1,0 +1,30 @@
+<!-- @dsCard group="Learning app" viewport="1280x800" name="Learning app" subtitle="Learner dashboard, notifications, skills and class builder composed from the component set" -->
+<!doctype html><html lang="th" data-theme="light"><head><meta charset="utf-8"><title>FutureSkill — Learning app</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>a{color:var(--text-brand)}a:hover{color:var(--brand-light-700)}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" src="Shell.jsx"></script>
+<script type="text/babel" src="MyLearning.jsx"></script>
+<script type="text/babel" src="Notifications.jsx"></script>
+<script type="text/babel" src="SkillProfile.jsx"></script>
+<script type="text/babel" src="ClassBuilder.jsx"></script>
+<script type="text/babel">
+const { Toast } = window.FutureSkillDesignSystem_f8a410;
+function App() {
+  const [screen, setScreen] = React.useState(() => localStorage.getItem('fs-kit-screen') || 'learning');
+  const [toast, setToast] = React.useState(null);
+  React.useEffect(() => { localStorage.setItem('fs-kit-screen', screen); }, [screen]);
+  React.useEffect(() => { if (!toast) return; const t = setTimeout(() => setToast(null), 2600); return () => clearTimeout(t); }, [toast]);
+  const Screen = { learning: MyLearning, notifications: Notifications, skills: SkillProfile, builder: ClassBuilder }[screen] || MyLearning;
+  return (
+    <AppShell screen={screen} onNavigate={setScreen}>
+      <Screen onToast={(m) => setToast({ m, k: Date.now() })} />
+      {toast ? <div style={{ position: 'fixed', right: 24, bottom: 24, zIndex: 10 }}><Toast key={toast.k} variant="success" progress onClose={() => setToast(null)}>{toast.m}</Toast></div> : null}
+    </AppShell>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script></body></html>

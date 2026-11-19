@@ -1,0 +1,57 @@
+.fs-btn {
+  --fs-btn-bg: transparent; --fs-btn-fg: var(--text-strong); --fs-btn-bd: transparent; --fs-btn-ink: var(--icon-neutral);
+  --fs-btn-overlay: transparent; --fs-btn-hover: var(--fill-hover); --fs-btn-press: var(--fill-click); --fs-btn-shadow: 0 0 #0000;
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-4); box-sizing: border-box; margin: 0; border: 0;
+  height: 40px; padding: var(--space-8) var(--space-16); border-radius: var(--radius-8);
+  font-family: var(--font-thai); font-weight: 400; font-size: 16px; line-height: 24px; white-space: nowrap; text-decoration: none;
+  color: var(--fs-btn-fg); background: linear-gradient(var(--fs-btn-overlay), var(--fs-btn-overlay)), var(--fs-btn-bg);
+  box-shadow: inset 0 0 0 1px var(--fs-btn-bd), var(--fs-btn-shadow); cursor: pointer; -webkit-appearance: none; appearance: none;
+}
+.fs-btn__label { padding: 0 var(--space-4); }
+.fs-btn .fs-icon { color: var(--fs-btn-ink); }
+
+/* sizes */
+.fs-btn--large { height: 54px; padding: var(--space-12) var(--space-24); border-radius: var(--radius-12); font-size: 20px; line-height: 30px; }
+.fs-btn--small { height: 32px; padding: 5px var(--space-12); gap: 0; font-size: 14px; line-height: 22px; }
+.fs-btn--icon-only { width: 48px; height: 48px; padding: var(--space-12); }
+.fs-btn--icon-only.fs-btn--small { width: 32px; height: 32px; padding: var(--space-8); }
+
+/* variant × tone */
+.fs-btn--primary, .fs-btn--secondary { --fs-btn-shadow: var(--shadow-button); }
+.fs-btn--primary { --fs-btn-bg: var(--fill-brand-strong); --fs-btn-fg: var(--text-inverse-strong); --fs-btn-ink: var(--icon-inverse); }
+.fs-btn--primary.fs-btn--neutral { --fs-btn-bg: var(--fill-strong); }
+.fs-btn--primary.fs-btn--destructive { --fs-btn-bg: var(--fill-error-strong); }
+.fs-btn--primary.fs-btn--inverse { --fs-btn-bg: var(--fill-inverse-strong); --fs-btn-fg: var(--text-strong); --fs-btn-ink: var(--icon-neutral); }
+.fs-btn--secondary { --fs-btn-bd: var(--stroke-brand-strong); }
+.fs-btn--secondary, .fs-btn--text { --fs-btn-fg: var(--text-brand); --fs-btn-ink: var(--icon-brand); }
+.fs-btn--secondary.fs-btn--neutral { --fs-btn-bd: var(--stroke-strong); }
+.fs-btn--secondary.fs-btn--neutral, .fs-btn--text.fs-btn--neutral { --fs-btn-fg: var(--text-strong); --fs-btn-ink: var(--icon-neutral); }
+.fs-btn--secondary.fs-btn--destructive { --fs-btn-bd: var(--stroke-error-strong); }
+.fs-btn--secondary.fs-btn--destructive, .fs-btn--text.fs-btn--destructive { --fs-btn-fg: var(--text-error); --fs-btn-ink: var(--icon-error); }
+.fs-btn--secondary.fs-btn--inverse { --fs-btn-bd: var(--stroke-inverse-strong); }
+.fs-btn--secondary.fs-btn--inverse, .fs-btn--text.fs-btn--inverse { --fs-btn-fg: var(--text-inverse-strong); --fs-btn-ink: var(--icon-inverse-strong); --fs-btn-hover: var(--fill-inverse-hover); --fs-btn-press: var(--fill-inverse-press); }
+
+/* states: real pseudo-classes, plus data-state to pin a state in documentation */
+.fs-btn:hover, .fs-btn[data-state="hover"] { --fs-btn-overlay: var(--fs-btn-hover); }
+.fs-btn:active, .fs-btn[data-state="click"] { --fs-btn-overlay: var(--fs-btn-press); --fs-btn-shadow: 0 0 #0000; }
+.fs-btn:focus-visible { outline: 2px solid var(--stroke-focus); outline-offset: 2px; }
+.fs-btn:disabled, .fs-btn[aria-disabled="true"], .fs-btn[data-state="disabled"] { --fs-btn-overlay: transparent; --fs-btn-shadow: 0 0 #0000; cursor: not-allowed; }
+.fs-btn--primary:disabled, .fs-btn--primary[aria-disabled="true"], .fs-btn--primary[data-state="disabled"] { --fs-btn-bg: var(--fill-disabled); --fs-btn-fg: var(--text-inverse-strong); --fs-btn-ink: var(--icon-inverse); }
+.fs-btn--primary.fs-btn--inverse:disabled, .fs-btn--primary.fs-btn--inverse[aria-disabled="true"], .fs-btn--primary.fs-btn--inverse[data-state="disabled"] { --fs-btn-bg: var(--fill-inverse-disabled); --fs-btn-fg: var(--text-strong); --fs-btn-ink: var(--icon-inverse-disabled); }
+.fs-btn--secondary:disabled, .fs-btn--secondary[aria-disabled="true"], .fs-btn--secondary[data-state="disabled"] { --fs-btn-bd: var(--stroke-disabled); }
+.fs-btn--secondary:disabled, .fs-btn--secondary[aria-disabled="true"], .fs-btn--secondary[data-state="disabled"],
+.fs-btn--text:disabled, .fs-btn--text[aria-disabled="true"], .fs-btn--text[data-state="disabled"] { --fs-btn-fg: var(--text-disabled); --fs-btn-ink: var(--icon-disabled); }
+.fs-btn--secondary.fs-btn--inverse:disabled, .fs-btn--secondary.fs-btn--inverse[aria-disabled="true"], .fs-btn--secondary.fs-btn--inverse[data-state="disabled"] { --fs-btn-bd: var(--stroke-inverse-disabled); }
+.fs-btn--secondary.fs-btn--inverse:disabled, .fs-btn--secondary.fs-btn--inverse[aria-disabled="true"], .fs-btn--secondary.fs-btn--inverse[data-state="disabled"],
+.fs-btn--text.fs-btn--inverse:disabled, .fs-btn--text.fs-btn--inverse[aria-disabled="true"], .fs-btn--text.fs-btn--inverse[data-state="disabled"] { --fs-btn-fg: var(--text-inverse-disabled); --fs-btn-ink: var(--icon-inverse-disabled); }
+
+/* legacy Tiny size: still on the old palette in Figma (brand tone only) */
+.fs-btn--tiny { height: 35px; padding: 10px; border-radius: var(--radius-16); font-size: 12px; line-height: 18px; --fs-btn-shadow: 0 0 #0000; }
+.fs-btn--tiny.fs-btn--primary { --fs-btn-bg: var(--primary-purple-500); --fs-btn-fg: var(--primary-neutral-50); }
+.fs-btn--tiny.fs-btn--secondary { --fs-btn-bd: var(--primary-purple-500); --fs-btn-fg: var(--primary-purple-500); }
+.fs-btn--tiny.fs-btn--text { border-radius: var(--radius-8); --fs-btn-fg: var(--primary-purple-500); }
+.fs-btn--tiny .fs-btn__label { padding: 0; }
+
+/* icon slot: sizes any icon node (a Heroicons component, an <Icon>, an <svg>) to the button size */
+.fs-btn__icon { display: inline-flex; flex: none; color: var(--fs-btn-ink); }
+.fs-btn__icon > svg { width: 100%; height: 100%; }

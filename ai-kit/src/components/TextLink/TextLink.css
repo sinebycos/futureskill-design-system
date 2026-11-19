@@ -1,0 +1,38 @@
+.fs-text-link {
+  --fs-text-link-fg: var(--text-brand); --fs-text-link-ink: var(--icon-brand);
+  --fs-text-link-rest: underline; --fs-text-link-flip: none; --fs-text-link-line: var(--fs-text-link-rest);
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: var(--space-8); box-sizing: border-box;
+  margin: 0; padding: 0; border: 0; border-radius: 0; background: none; outline: 0;
+  font-family: var(--font-thai); font-weight: 600; font-size: 16px; line-height: 24px; letter-spacing: 0; text-align: center; white-space: nowrap; text-decoration: none;
+  color: var(--fs-text-link-fg); cursor: pointer; -webkit-appearance: none; appearance: none;
+}
+.fs-text-link__label { text-decoration-line: var(--fs-text-link-line); text-decoration-style: solid; text-decoration-thickness: auto; text-underline-offset: auto; text-decoration-skip-ink: none; }
+.fs-text-link .fs-icon { color: var(--fs-text-link-ink); }
+/* icon slots: the icon is any node the caller passes (e.g. a bare Heroicons component), so size and ink it here */
+.fs-text-link > svg { flex: none; width: 20px; height: 20px; color: var(--fs-text-link-ink); }
+
+/* size, weight, underline */
+.fs-text-link--tiny { font-size: 14px; line-height: 20px; }
+.fs-text-link--regular { font-weight: 400; }
+.fs-text-link--no-underline { --fs-text-link-rest: none; --fs-text-link-flip: underline; }
+
+/* tone. The two hex inks are what Figma's unswapped icon placeholder carries (remote library variables, not local tokens). */
+.fs-text-link--neutral-strong { --fs-text-link-fg: var(--text-strong); }
+.fs-text-link--neutral-weak { --fs-text-link-fg: var(--text-weak); }
+.fs-text-link--destructive { --fs-text-link-fg: var(--text-error); --fs-text-link-ink: var(--icon-error); }
+.fs-text-link--inverse-strong { --fs-text-link-fg: var(--text-inverse-strong); }
+.fs-text-link--inverse-weak { --fs-text-link-fg: var(--text-inverse-weak); }
+.fs-text-link--neutral-strong, .fs-text-link--neutral-weak { --fs-text-link-ink: var(--icon-neutral); }
+.fs-text-link--inverse-strong { --fs-text-link-ink: var(--icon-inverse-strong); }
+.fs-text-link--inverse-weak { --fs-text-link-ink: var(--icon-inverse); }
+
+/* states: real pseudo-classes, plus data-state to pin a state in documentation. Hover and press flip the underline; colours stay. */
+.fs-text-link:hover, .fs-text-link[data-state="hover"],
+.fs-text-link:active, .fs-text-link[data-state="press"] { --fs-text-link-line: var(--fs-text-link-flip); }
+.fs-text-link:focus-visible::after, .fs-text-link[data-state="focus"]::after {
+  content: ""; position: absolute; inset: calc(-1 * var(--space-4)); border-radius: var(--radius-4);
+  box-shadow: inset 0 0 0 2px var(--stroke-focus); pointer-events: none;
+}
+.fs-text-link:disabled, .fs-text-link[aria-disabled="true"], .fs-text-link[data-state="disabled"] { --fs-text-link-fg: var(--text-disabled); --fs-text-link-line: var(--fs-text-link-rest); cursor: not-allowed; }
+.fs-text-link--inverse-strong:disabled, .fs-text-link--inverse-strong[aria-disabled="true"], .fs-text-link--inverse-strong[data-state="disabled"],
+.fs-text-link--inverse-weak:disabled, .fs-text-link--inverse-weak[aria-disabled="true"], .fs-text-link--inverse-weak[data-state="disabled"] { --fs-text-link-fg: var(--text-inverse-disabled); }

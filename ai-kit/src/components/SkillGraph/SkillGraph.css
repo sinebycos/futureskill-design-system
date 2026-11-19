@@ -1,0 +1,28 @@
+.fs-skill-graph {
+  --fs-skill-graph-grid: var(--primary-purple-100); --fs-skill-graph-series: #e63a77;
+  --fs-skill-graph-label: var(--primary-purple-500); --fs-skill-graph-tick: var(--deep-purple-500);
+  display: block; box-sizing: border-box; flex: none; max-width: 100%; height: auto; overflow: visible;
+}
+
+/* grid: rings, and the spokes of the mini size and the circle grid */
+.fs-skill-graph__ring, .fs-skill-graph__spoke { fill: none; stroke: var(--fs-skill-graph-grid); stroke-width: 2px; stroke-linejoin: round; }
+.fs-skill-graph--mini .fs-skill-graph__ring, .fs-skill-graph--mini .fs-skill-graph__spoke { stroke-width: 1px; stroke-linejoin: miter; }
+.fs-skill-graph--mini.fs-skill-graph--polygon .fs-skill-graph__grid { opacity: 0.5; }
+.fs-skill-graph--circle { --fs-skill-graph-grid: var(--deep-purple-100); }
+.fs-skill-graph--circle .fs-skill-graph__ring, .fs-skill-graph--circle .fs-skill-graph__spoke { stroke-width: 1.22px; }
+
+/* text: axis labels 12px, ring values 10px */
+.fs-skill-graph__label, .fs-skill-graph__tick { font-family: var(--font-thai); font-weight: 400; dominant-baseline: central; }
+.fs-skill-graph__label { font-size: 12px; fill: var(--fs-skill-graph-label); }
+.fs-skill-graph__tick { font-size: 10px; fill: var(--fs-skill-graph-tick); text-anchor: middle; }
+
+/* series: filled area, outline, one dot per axis */
+.fs-skill-graph__area { fill: var(--fs-skill-graph-series); stroke: var(--primary-purple-500); stroke-width: 1px; opacity: 0.8; }
+.fs-skill-graph__area--weak { opacity: 0.3; }
+.fs-skill-graph__line { fill: none; stroke: var(--fs-skill-graph-series); stroke-width: 4px; stroke-linejoin: round; }
+.fs-skill-graph__dot { fill: var(--fs-skill-graph-series); }
+.fs-skill-graph--mini .fs-skill-graph__area { stroke: none; }
+.fs-skill-graph--mini .fs-skill-graph__line { stroke-width: 1px; stroke-linejoin: miter; }
+
+/* Figma "Dark" variant: lighter inks for a dark ground (legacy palette, set by the tone prop, not by the theme) */
+.fs-skill-graph--dark { --fs-skill-graph-series: var(--pink-300); --fs-skill-graph-label: var(--primary-purple-200); --fs-skill-graph-tick: var(--deep-purple-200); }

@@ -1,0 +1,22 @@
+<!-- @dsCard group="Components" viewport="700x330" name="Button" -->
+<!doctype html><html lang="th"><head><meta charset="utf-8"><link rel="stylesheet" href="../../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../../_ds_bundle.js"></script>
+<style>body{padding:20px;margin:0}.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:14px}.lbl{font-size:12px;line-height:18px;color:var(--text-weak);min-width:72px}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const { Button, Icon } = window.FutureSkillDesignSystem_f8a410;
+
+function Demo() { 
+  return (<>
+<div className="row"><span className="lbl">Primary</span><Button>ซื้อคอร์สนี้</Button><Button tone="neutral">ดูรายละเอียด</Button><Button tone="destructive">ลบ</Button><Button state="hover">Hover</Button><Button disabled>Disabled</Button></div>
+<div className="row"><span className="lbl">Secondary</span><Button variant="secondary">ดูใบรับรอง</Button><Button variant="secondary" tone="neutral">ยกเลิก</Button><Button variant="secondary" tone="destructive">ลบ</Button><Button variant="secondary" disabled>Disabled</Button></div>
+<div className="row"><span className="lbl">Text</span><Button variant="text">ดูทั้งหมด</Button><Button variant="text" tone="neutral">ข้าม</Button><Button variant="text" tone="destructive">ลบ</Button></div>
+<div className="row"><span className="lbl">Sizes</span><Button size="large" iconLeft={<Icon name="academic-cap"/>}>Large</Button><Button iconRight={<Icon name="arrow-right"/>}>Medium</Button><Button size="small">Small</Button><Button size="tiny">Tiny</Button><Button iconOnly aria-label="share" iconLeft={<Icon name="share"/>}/><Button iconOnly size="small" variant="secondary" aria-label="edit" iconLeft={<Icon name="pencil"/>}/></div>
+<div className="row" style={{background:'var(--background-inverse)',padding:12,borderRadius:8}}><Button tone="inverse">Inverse</Button><Button variant="secondary" tone="inverse">Inverse</Button><Button variant="text" tone="inverse">Inverse</Button></div>
+</>);
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script></body></html>

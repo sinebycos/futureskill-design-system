@@ -1,0 +1,40 @@
+.fs-segmented-control {
+  --fs-segmented-control-divider: var(--stroke-inverse-weak);
+  position: relative; display: inline-grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); box-sizing: border-box; max-width: 100%;
+  height: 48px; margin: 0; padding: 0; border: 0; border-radius: var(--radius-8);
+  background: var(--background-alternate); box-shadow: inset 0 0 0 1px var(--stroke-weak);
+  font-family: var(--font-thai);
+}
+.fs-segmented-control__tab {
+  position: relative; display: flex; align-items: center; justify-content: center; gap: var(--space-8); box-sizing: border-box; min-width: 0; margin: 0; border: 0;
+  padding: 5px; border-radius: var(--radius-6); background: transparent; color: var(--text-weak);
+  font-family: inherit; font-weight: 400; font-size: 16px; line-height: 24px; white-space: nowrap; cursor: pointer; -webkit-appearance: none; appearance: none;
+}
+.fs-segmented-control__tab--active {
+  padding: var(--space-4); background: var(--background-overlay); color: var(--text-brand); font-weight: 500; line-height: 22px;
+  box-shadow: inset 0 0 0 0.5px var(--stroke-strong), var(--shadow-raised);
+}
+
+/* divider: a 0.64px line with 8px above and below, only between two inactive tabs */
+.fs-segmented-control__tab + .fs-segmented-control__tab::before { content: ""; position: absolute; left: 0; top: var(--space-8); bottom: var(--space-8); width: 0.64px; background: var(--fs-segmented-control-divider); }
+.fs-segmented-control__tab.fs-segmented-control__tab--active::before, .fs-segmented-control__tab--active + .fs-segmented-control__tab::before { content: none; }
+
+/* sizes */
+.fs-segmented-control--small { height: 38px; }
+.fs-segmented-control--small .fs-segmented-control__tab { font-weight: 400; font-size: 14px; line-height: 22px; }
+
+/* counter: the Figma Counter=True tabs are not on tokens yet (raw hex and legacy paint styles), so they do not follow the theme */
+.fs-segmented-control__counter { font-weight: 600; font-size: 16px; line-height: 22px; }
+.fs-segmented-control__tab--counter { color: #000000; }
+.fs-segmented-control__tab--counter.fs-segmented-control__tab--active { color: #842cdd; background: #ffffff; box-shadow: 0 2px 1px #0000000a; }
+
+/* icon-only (Figma Icon=True): still on the legacy iOS paint styles, 32px high, does not follow the theme */
+.fs-segmented-control--icon-only { --fs-segmented-control-divider: #3c3c432e; height: 32px; padding: var(--space-2); background: #7676801f; box-shadow: none; }
+.fs-segmented-control--icon-only .fs-segmented-control__tab { padding: var(--space-4); color: #3c3c434d; }
+.fs-segmented-control--icon-only .fs-segmented-control__tab--active { padding: var(--space-2) var(--space-4); background: #ffffff; box-shadow: 0 3px 1px #0000000a, 0 3px 8px #0000001f; }
+
+/* states: Figma draws none besides active; the focus ring is an addition. data-state pins it in documentation */
+.fs-segmented-control__tab:focus-visible, .fs-segmented-control[data-state="focus"] .fs-segmented-control__tab--active { outline: 2px solid var(--stroke-focus); outline-offset: 2px; z-index: 1; }
+
+/* icon slot: the icon is now any node the caller passes (e.g. a bare Heroicons component), so size it here */
+.fs-segmented-control__tab > svg { flex: none; width: 24px; height: 24px; }

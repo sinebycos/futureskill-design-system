@@ -1,0 +1,31 @@
+/* Toast has no variable bindings in Figma: every colour below is a raw hex or an unshipped paint style, read from the layers.
+   Light / Dark / Colored is Figma's own "Theme" axis (a prop), so the toast does not follow the page theme. */
+.fs-toast {
+  --fs-toast-accent: #55b938; --fs-toast-soft: #cceac4;
+  --fs-toast-bg: #ffffff; --fs-toast-fg: #000000; --fs-toast-ink: var(--fs-toast-accent); --fs-toast-close: #b3b3b3; --fs-toast-bar: var(--fs-toast-accent);
+  position: relative; display: flex; align-items: center; gap: var(--space-8); box-sizing: border-box; overflow: hidden;
+  width: 313px; max-width: 100%; min-height: 64px; padding: 9px 9px 9px var(--space-12); border-radius: var(--radius-4);
+  font-family: var(--font-thai); font-weight: 400; font-size: 16px; line-height: 24px; text-align: left;
+  color: var(--fs-toast-fg); background: var(--fs-toast-bg);
+}
+.fs-toast__icon { display: flex; flex: none; width: 24px; height: 24px; color: var(--fs-toast-ink); }
+/* icon slot: the icon is any node the caller passes (e.g. a bare Heroicons component), so size it here; ink comes from the slot colour */
+.fs-toast__icon > svg { flex: none; width: 24px; height: 24px; }
+/* Figma sets the text box 2.5px below the icon's top (y 22.5 against y 20) */
+.fs-toast__message { position: relative; top: 2.5px; flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+.fs-toast__close {
+  display: flex; align-items: center; justify-content: center; flex: none; align-self: flex-start; box-sizing: border-box; width: 16px; height: 16px; margin: 0; padding: 0; border: 0; border-radius: var(--radius-2);
+  background: transparent; color: var(--fs-toast-close); cursor: pointer; -webkit-appearance: none; appearance: none;
+}
+.fs-toast__close:focus-visible { outline: 2px solid var(--stroke-focus); outline-offset: 2px; }
+/* 188 of 313px is the length drawn in every Progress=Yes variant; a numeric `progress` overrides the width inline */
+.fs-toast__progress { position: absolute; left: 0; bottom: 0; width: calc(188 / 313 * 100%); height: 5px; background: var(--fs-toast-bar); }
+
+/* variant (Figma "Type"): the main colour and its light partner */
+.fs-toast--error { --fs-toast-accent: #d65745; --fs-toast-soft: #f3cdc8; }
+.fs-toast--warning { --fs-toast-accent: #eac645; --fs-toast-soft: #f9eec8; }
+.fs-toast--info { --fs-toast-accent: #5296d5; --fs-toast-soft: #cbe0f3; }
+
+/* theme (Figma "Theme") */
+.fs-toast--dark { --fs-toast-bg: #121212; --fs-toast-fg: #ffffff; }
+.fs-toast--colored { --fs-toast-bg: var(--fs-toast-accent); --fs-toast-fg: #ffffff; --fs-toast-ink: #ffffff; --fs-toast-close: var(--fs-toast-soft); --fs-toast-bar: var(--fs-toast-soft); }

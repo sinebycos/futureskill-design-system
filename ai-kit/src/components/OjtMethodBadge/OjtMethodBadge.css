@@ -1,0 +1,17 @@
+.fs-ojt-method-badge {
+  --fs-ojt-method-badge-bg: var(--fill-apprenticeship); --fs-ojt-method-badge-fg: var(--text-apprenticeship); --fs-ojt-method-badge-ink: var(--icon-apprenticeship);
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-4); box-sizing: border-box; vertical-align: middle;
+  padding: var(--space-4) var(--space-8); border-radius: var(--radius-full);
+  font-family: var(--font-thai); font-weight: 600; font-size: 14px; line-height: 19px; white-space: nowrap;
+  color: var(--fs-ojt-method-badge-fg); background: var(--fs-ojt-method-badge-bg);
+}
+.fs-ojt-method-badge .fs-icon { color: var(--fs-ojt-method-badge-ink); }
+
+/* one colour set per OJT method; none of them changes with the theme */
+.fs-ojt-method-badge--orientation { --fs-ojt-method-badge-bg: var(--fill-orientation); --fs-ojt-method-badge-fg: var(--text-orientation); --fs-ojt-method-badge-ink: var(--icon-orientation); }
+.fs-ojt-method-badge--shadowing { --fs-ojt-method-badge-bg: var(--yellow-50); --fs-ojt-method-badge-fg: var(--yellow-500); --fs-ojt-method-badge-ink: var(--yellow-500); }
+.fs-ojt-method-badge--mentoring { --fs-ojt-method-badge-bg: var(--deep-purple-50); --fs-ojt-method-badge-fg: var(--deep-purple-500); --fs-ojt-method-badge-ink: var(--deep-purple-500); }
+.fs-ojt-method-badge--coaching { --fs-ojt-method-badge-bg: var(--pink-50); --fs-ojt-method-badge-fg: var(--pink-500); --fs-ojt-method-badge-ink: var(--pink-500); }
+.fs-ojt-method-badge--job-rotation { --fs-ojt-method-badge-bg: var(--primary-purple-50); --fs-ojt-method-badge-fg: var(--primary-purple-500); --fs-ojt-method-badge-ink: var(--primary-purple-500); }
+.fs-ojt-method-badge--cross-training { --fs-ojt-method-badge-bg: var(--fill-cross-training); --fs-ojt-method-badge-fg: var(--text-cross-training); --fs-ojt-method-badge-ink: var(--icon-cross-training); }
+.fs-ojt-method-badge--simulated-training { --fs-ojt-method-badge-bg: var(--fill-simulated-training); --fs-ojt-method-badge-fg: var(--text-simulated-training); --fs-ojt-method-badge-ink: var(--icon-simulated-training); }

@@ -1,0 +1,19 @@
+<!-- @dsCard group="Components" viewport="700x300" name="SkillLevel" -->
+<!doctype html><html lang="th"><head><meta charset="utf-8"><link rel="stylesheet" href="../../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../../_ds_bundle.js"></script>
+<style>body{padding:20px;margin:0}.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:14px}.lbl{font-size:12px;line-height:18px;color:var(--text-weak);min-width:72px}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const { SkillLevel } = window.FutureSkillDesignSystem_f8a410;
+const lv=['not-start','novice','emerging','intermediate','above-avg','excellent'];const rg=['0-24th','25-49th','50-74th','75-89th','90-100th'];
+function Demo() { 
+  return (<>
+<div className="row">{lv.map(l=><span key={l} style={{display:'inline-flex',gap:6,alignItems:'center',fontSize:12}}><SkillLevel level={l}/>{l}</span>)}</div>
+<div className="row" style={{alignItems:'flex-end',gap:0}}>{lv.slice(1).map((l,i)=><SkillLevel key={l} variant="band" level={l} active={l==='intermediate'} range={rg[i]}/>)}</div>
+</>);
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script></body></html>
