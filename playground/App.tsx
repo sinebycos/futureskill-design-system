@@ -49,6 +49,8 @@ export function App() {
             ))}
           </div>
         ))}
+        <div className="pg-group">AI kit</div>
+        <a className="pg-link" href="./ai-kit/ui_kits/learning-app/index.html">Learning app UI kit</a>
       </nav>
       <main className="pg-main">
         <div className="pg-head">
